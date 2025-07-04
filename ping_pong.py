@@ -26,6 +26,18 @@ class Player(GameSprite):
         if keys[K_DOWN] and self.rect.y < win_height - 80:
             self.rect.y += self.speed
 
+racket1 = Player('racket.png', 30, 200, 4, 50, 150)
+racket1 = Player('racket.png', 520, 200, 4, 50, 150)
+tenis_ball = GameSprite('tenis_ball.png', 200, 200, 4, 50, 50)
+
+font.init()
+font = font.Font(None, 35)
+lose1 = font.render('Player 1 lose', True, (180, 0, 0))
+lose2 = font.render('Player 2 lose', True, (180, 0, 0))
+
+speed_x = 3
+speed_y = 3
+
 #игровая сцена
 
 back = (200, 255, 255)
@@ -41,5 +53,6 @@ finish = False
 clock = time.Clock()
 fps = 60
 
-display.update()
-clock.tick(fps)
+while game:
+    display.update()
+    clock.tick(fps)
