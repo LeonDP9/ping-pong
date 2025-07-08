@@ -68,5 +68,16 @@ while game:
             speed_y *= 1
         if tenis_ball.rect.y > win_height - 50 or tenis_ball.rect.y < 0:
             speed_y *= -1
+        if tenis_ball.rect.x < 0:
+            finish = True
+            window.blit(lose1, (200, 200))
+            Game_over = True
+        if tenis_ball.rect.x > win_width:
+            finish = True
+            window.blit(lose2, (200, 200))
+            Game_over = True
+        racket1.reset()
+        racket2.reset()
+        tenis_ball.reset()
     display.update()
     clock.tick(fps)
