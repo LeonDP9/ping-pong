@@ -27,7 +27,7 @@ class Player(GameSprite):
             self.rect.y += self.speed
 
 racket1 = Player('racket.png', 30, 200, 4, 50, 150)
-racket1 = Player('racket.png', 520, 200, 4, 50, 150)
+racket2 = Player('racket.png', 520, 200, 4, 50, 150)
 tenis_ball = GameSprite('tenis_ball.png', 200, 200, 4, 50, 50)
 
 font.init()
@@ -54,5 +54,19 @@ clock = time.Clock()
 fps = 60
 
 while game:
+    for e in event.get():
+        if e.type == QUIT:
+            game = False
+    if finish != True:
+        window.fill(back)
+        racket1.update_l()
+        racket2.update_r()
+        tenis_ball.rect.x += speed_x
+        tenis_ball.rect.y += speed_y
+        if sprite.collide_rect(racket1, tenis_ball) or sprite.collide_rect(racket2, tenis_ball):
+            speed_x *= -1
+            speed_y *= 1
+        if tenis_ball.rect.y > win_height - 50 or tenis_ball.rect.y < 0:
+            speed_y *= -1
     display.update()
     clock.tick(fps)
